@@ -33,7 +33,7 @@ echo "Backing up Claude configs..."
 cp ~/.claude/CLAUDE.md "$DOTFILES_DIR/claude/" 2>/dev/null || true
 cp -r ~/.claude/commands "$DOTFILES_DIR/claude/" 2>/dev/null || true
 
-# Git commit
+# Git commit and push
 cd "$DOTFILES_DIR"
 if git diff --quiet && git diff --cached --quiet; then
     echo "No changes to commit."
@@ -41,6 +41,11 @@ else
     git add -A
     git commit -m "Backup $(date +%Y-%m-%d-%H%M)"
     echo "Changes committed to git."
+
+    # Push to GitHub
+    echo "Pushing to GitHub..."
+    git push origin master
+    echo "Pushed to GitHub."
 fi
 
 echo "Backup complete!"

@@ -16,7 +16,8 @@ set -h
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export API_KEY="AIzaSyCHXOeScV6ixnro-XcelGhhBd5E1A4fuLE"
+# Load secrets (API keys, tokens) from separate file
+[ -f ~/.secrets.sh ] && source ~/.secrets.sh
 
 export PATH="$PATH:/home/rooutt/.config/.foundry/bin"
 
