@@ -31,6 +31,7 @@ cp ~/.gitconfig "$DOTFILES_DIR/home/" 2>/dev/null || true
 # Claude
 echo "Backing up Claude configs..."
 cp ~/.claude/CLAUDE.md "$DOTFILES_DIR/claude/" 2>/dev/null || true
+cp ~/.claude/settings.json "$DOTFILES_DIR/claude/" 2>/dev/null || true
 cp -r ~/.claude/commands "$DOTFILES_DIR/claude/" 2>/dev/null || true
 
 # Git commit and push
