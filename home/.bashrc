@@ -23,3 +23,17 @@ export PATH="$PATH:/home/rooutt/.config/.foundry/bin"
 
 # Zoxide - smarter cd command (use 'z' instead of 'cd')
 eval "$(zoxide init bash)"
+
+# Ollama quick aliases
+alias ask='ollama run deepseek-coder:33b'
+alias chat='ollama run mistral'
+
+# Ask Ollama about a file
+askfile() {
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo "Usage: askfile <file> <question>"
+        echo "Example: askfile main.sol 'review this contract'"
+        return 1
+    fi
+    cat "$1" | ollama run deepseek-coder:33b "$2"
+}
