@@ -1,0 +1,12 @@
+#!/bin/bash
+# Safe lock screen wrapper - prevents race condition on suspend
+# Rollback: restore ~/.config/hypr/hypridle.conf.backup
+
+LOCKFILE="/tmp/hyprlock-$UID.lock"
+
+# Acquire exclusive lock (non-blocking)
+exec 200>"$LOCKFILE"
+flock -n 200 || exit 0
+
+# Call original omarchy lock screen (preserves all features)
+exec omarchy-lock-screen
