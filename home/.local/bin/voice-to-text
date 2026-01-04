@@ -1,6 +1,6 @@
 #!/bin/bash
-# Voice-to-Text - Push to Talk
-# Hold Alt+S to record, release to transcribe
+# Voice-to-Text using Google Cloud Speech-to-Text API
+# Toggle: press to start recording, press again to transcribe
 
 API_KEY="AIzaSyCHXOeScV6ixnro-XcelGhhBd5E1A4fuLE"
 PID_FILE="/tmp/voice-to-text.pid"
@@ -8,47 +8,45 @@ RECORDING_FILE="/tmp/voice-to-text-recording.wav"
 FLAC_FILE="/tmp/voice-to-text.flac"
 JSON_FILE="/tmp/voice-to-text-request.json"
 
-case "$1" in
-    start)
-        # Start recording
-        rm -f "$RECORDING_FILE"
-        notify-send -t 500 -u low "Voice to Text" "Recording..." &
-        pw-record --rate 16000 --channels 1 "$RECORDING_FILE" &
-        echo $! > "$PID_FILE"
-        ;;
-    stop)
-        # Stop recording and transcribe
-        [ -f "$PID_FILE" ] || exit 0
-        PID=$(cat "$PID_FILE")
-        kill "$PID" 2>/dev/null
-        rm -f "$PID_FILE"
-        sleep 0.15
+if [ -f "$PID_FILE" ]; then
+    # Stop recording and transcribe
+    PID=$(cat "$PID_FILE")
+    kill "$PID" 2>/dev/null
+    rm -f "$PID_FILE"
+    sleep 0.2
 
-        [ ! -s "$RECORDING_FILE" ] && exit 1
+    notify-send -t 1000 -u low "Voice to Text" "Processing..." &
 
-        # Convert to FLAC
-        ffmpeg -y -i "$RECORDING_FILE" -ar 16000 -ac 1 -c:a flac "$FLAC_FILE" 2>/dev/null
+    [ ! -s "$RECORDING_FILE" ] && { notify-send -t 2000 "Voice to Text" "No audio"; exit 1; }
 
-        # Build JSON request
-        AUDIO_BASE64=$(base64 -w 0 "$FLAC_FILE")
-        cat > "$JSON_FILE" << EOJSON
+    # Convert to FLAC
+    ffmpeg -y -i "$RECORDING_FILE" -ar 16000 -ac 1 -c:a flac "$FLAC_FILE" 2>/dev/null
+
+    # Build JSON request
+    AUDIO_BASE64=$(base64 -w 0 "$FLAC_FILE")
+    cat > "$JSON_FILE" << EOJSON
 {"config":{"encoding":"FLAC","sampleRateHertz":16000,"languageCode":"en-US","enableAutomaticPunctuation":true,"model":"latest_short"},"audio":{"content":"$AUDIO_BASE64"}}
 EOJSON
 
-        # Call API
-        RESPONSE=$(curl -s -X POST \
-            "https://speech.googleapis.com/v1/speech:recognize?key=$API_KEY" \
-            -H "Content-Type: application/json" \
-            -d @"$JSON_FILE")
+    # Call API
+    RESPONSE=$(curl -s -X POST \
+        "https://speech.googleapis.com/v1/speech:recognize?key=$API_KEY" \
+        -H "Content-Type: application/json" \
+        -d @"$JSON_FILE")
 
-        rm -f "$RECORDING_FILE" "$FLAC_FILE" "$JSON_FILE"
+    rm -f "$RECORDING_FILE" "$FLAC_FILE" "$JSON_FILE"
 
-        TRANSCRIPT=$(echo "$RESPONSE" | jq -r '.results[0].alternatives[0].transcript // empty')
+    TRANSCRIPT=$(echo "$RESPONSE" | jq -r '.results[0].alternatives[0].transcript // empty')
 
-        [ -n "$TRANSCRIPT" ] && wtype "$TRANSCRIPT"
-        ;;
-    *)
-        echo "Usage: voice-to-text {start|stop}"
-        exit 1
-        ;;
-esac
+    if [ -n "$TRANSCRIPT" ]; then
+        wtype "$TRANSCRIPT"
+        notify-send -t 1000 -u low "Voice to Text" "Done" &
+    else
+        notify-send -t 1500 "Voice to Text" "No speech detected"
+    fi
+else
+    # Start recording
+    notify-send -t 1000 -u low "Voice to Text" "Recording..." &
+    pw-record --rate 16000 --channels 1 "$RECORDING_FILE" &
+    echo $! > "$PID_FILE"
+fi
