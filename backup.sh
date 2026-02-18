@@ -51,17 +51,13 @@ cp ~/.config/starship.toml "$DOTFILES_DIR/config/starship.toml" 2>/dev/null || t
 # Only the text/config files - backgrounds excluded by .gitignore (large images)
 echo "Backing up Omarchy custom themes (configs only, not backgrounds)..."
 for theme in aetheria gold-rush temerald; do
-    THEME_SRC=~/.config/omarchy/themes/$theme
+    THEME_SRC="$HOME/.config/omarchy/themes/$theme"
     THEME_DST="$DOTFILES_DIR/config/omarchy/themes/$theme"
     if [ -d "$THEME_SRC" ]; then
         mkdir -p "$THEME_DST"
-        # Copy all non-image files
-        find "$THEME_SRC" -maxdepth 1 -type f \
-            ! -name "*.jpg" ! -name "*.jpeg" ! -name "*.png" \
-            ! -name "*.gif" ! -name "*.webp" ! -name "*.bmp" \
-            -exec cp {} "$THEME_DST/" \; 2>/dev/null || true
-        # Copy subdirs (gtk-3.0, gtk-4.0, zed, etc.) - text files only
-        find "$THEME_SRC" -mindepth 2 -type f \
+        # Copy all non-image, non-.git files (these themes have their own .git dirs)
+        find "$THEME_SRC" -type f \
+            ! -path "*/.git/*" \
             ! -name "*.jpg" ! -name "*.jpeg" ! -name "*.png" \
             ! -name "*.gif" ! -name "*.webp" ! -name "*.bmp" \
             | while read -r f; do
@@ -70,6 +66,8 @@ for theme in aetheria gold-rush temerald; do
                 mkdir -p "$DEST_DIR"
                 cp "$f" "$DEST_DIR/"
             done 2>/dev/null || true
+        # Remove any .git dirs that may have been created by mkdir -p above
+        rm -rf "$THEME_DST/.git"
     fi
 done
 

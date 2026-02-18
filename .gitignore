@@ -31,3 +31,9 @@ config/mozilla/
 
 # NVM (managed separately)
 config/nvm/
+
+# Custom Omarchy themes have their own .git dirs - copy content, not as submodules
+# (backup.sh handles copying individual files, excluding .git and images)
+config/omarchy/themes/aetheria/.git/
+config/omarchy/themes/gold-rush/.git/
+config/omarchy/themes/temerald/.git/
