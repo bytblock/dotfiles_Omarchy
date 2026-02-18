@@ -1,0 +1,73 @@
+# iPhone-Style Modern Notifications for Mako
+# Beautiful, translucent notifications that match your iPhone integration
+
+# Position and layout
+anchor=top-right
+layer=overlay
+margin=20,20,0,0
+padding=16,20
+width=350
+height=120
+
+# iPhone-style appearance (subtle/muted)
+background-color=#1C1C1EBB
+text-color=#F0F0F0
+border-color=#007AFF40
+border-size=1
+border-radius=16
+
+# Modern typography
+font=SF Pro Display 13
+markup=1
+
+# Behavior  
+default-timeout=4000
+ignore-timeout=0
+max-visible=5
+sort=-time
+
+# Grouping and stacking
+group-by=app-name
+max-history=20
+
+# Icons
+icon-location=left
+max-icon-size=48
+icon-path=/usr/share/icons/Papirus-Dark:/usr/share/pixmaps
+
+# Progress bar styling
+progress-color=#007AFF
+
+# Per-urgency styling (muted colors)
+[urgency=low]
+border-color=#8E8E9330
+background-color=#1C1C1E99
+default-timeout=3000
+
+[urgency=normal]
+border-color=#007AFF40
+background-color=#1C1C1EBB
+default-timeout=4000
+
+[urgency=critical]
+border-color=#FF453A80
+background-color=#2C1618BB
+text-color=#F0F0F0
+default-timeout=0
+
+# App-specific styling (subtle colors)
+[app-name="iPhone Integration"]
+border-color=#30D15860
+background-color=#1C1C1EBB
+
+[app-name="LocalSend"] 
+border-color=#007AFF50
+background-color=#1C1C1EBB
+
+[app-name="Clipboard"]
+border-color=#5AC8FA50
+background-color=#1C1C1EBB
+
+[app-name="System"]
+border-color=#FF950060
+background-color=#1C1C1EBB

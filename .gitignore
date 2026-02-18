@@ -5,3 +5,29 @@ secrets.sh
 
 # OS files
 .DS_Store
+
+# Large binary files (theme backgrounds)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.bmp
+
+# Claude runtime files
+claude/conversations.db
+claude/*.db
+
+# Backup files (keep originals, not noise)
+*.bak
+*.bak.*
+*.backup
+config/hypr/*.bak.*
+
+# Browser/app data (not config)
+config/chromium/
+config/vivaldi/
+config/mozilla/
+
+# NVM (managed separately)
+config/nvm/

@@ -1,23 +1,43 @@
 {
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
   "mcpServers": {
     "memory": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
     },
     "github": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": ""
       }
     },
     "fetch": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-fetch"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ]
     },
     "sequential-thinking": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
     }
+  },
+  "model": "sonnet",
+  "allowDangerouslySkipPermissions": true,
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   }
 }
