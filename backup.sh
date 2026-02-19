@@ -121,6 +121,16 @@ find ~/.config/fastfetch/ -type f | while read -r f; do
     cp "$f" "$DOTFILES_DIR/config/fastfetch/"
 done 2>/dev/null || true
 
+# ── Omarchy Webapps ───────────────────────────────────────────────────────────
+echo "Backing up Omarchy webapps..."
+mkdir -p "$DOTFILES_DIR/config/applications/icons"
+# Only backup omarchy-launch-webapp desktop files (not system-generated ones)
+grep -rl "omarchy-launch-webapp" ~/.local/share/applications/*.desktop 2>/dev/null | while read -r f; do
+    cp "$f" "$DOTFILES_DIR/config/applications/"
+done
+# Copy webapp icons
+cp -r ~/.local/share/applications/icons/. "$DOTFILES_DIR/config/applications/icons/" 2>/dev/null || true
+
 # ── Home directory files ──────────────────────────────────────────────────────
 echo "Backing up home directory files..."
 cp ~/.bashrc "$DOTFILES_DIR/home/" 2>/dev/null || true

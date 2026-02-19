@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Codex
+Comment=Codex
+Exec=omarchy-launch-webapp https://chatgpt.com/codex
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/Codex.png
+StartupNotify=true

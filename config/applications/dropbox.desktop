@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=dropbox
+Comment=dropbox
+Exec=omarchy-launch-webapp https://www.dropbox.com/home
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/dropbox.png
+StartupNotify=true

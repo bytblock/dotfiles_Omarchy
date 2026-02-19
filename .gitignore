@@ -14,6 +14,9 @@ secrets.sh
 *.webp
 *.bmp
 
+# Allow webapp icons (small PNGs)
+!config/applications/icons/*.png
+
 # Claude runtime files
 claude/conversations.db
 claude/*.db

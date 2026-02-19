@@ -1,6 +1,13 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "model": "sonnet",
   "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "context7@claude-plugins-official": true
   },
   "mcpServers": {
     "memory": {
@@ -35,9 +42,5 @@
       ]
     }
   },
-  "model": "sonnet",
-  "allowDangerouslySkipPermissions": true,
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  }
+  "allowDangerouslySkipPermissions": true
 }

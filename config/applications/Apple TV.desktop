@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Apple TV
+Comment=Apple TV
+Exec=omarchy-launch-webapp https://tv.apple.com/
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/Apple TV.png
+StartupNotify=true

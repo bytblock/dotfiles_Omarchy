@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=canva
+Comment=canva
+Exec=omarchy-launch-webapp https://www.canva.com/
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/canva.png
+StartupNotify=true

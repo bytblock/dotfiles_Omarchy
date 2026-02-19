@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Shop
+Comment=Shop
+Exec=omarchy-launch-webapp https://shop.app/
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/Shop.png
+StartupNotify=true

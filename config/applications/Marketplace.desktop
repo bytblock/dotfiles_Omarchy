@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Marketplace
+Comment=Marketplace
+Exec=omarchy-launch-webapp https://www.facebook.com/marketplace/
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/Marketplace.png
+StartupNotify=true

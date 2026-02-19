@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=bytnode
+Comment=bytnode
+Exec=omarchy-launch-webapp https://dashboard.tenderly.co/Rooutt/bytblock/infrastructure
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/bytnode.png
+StartupNotify=true

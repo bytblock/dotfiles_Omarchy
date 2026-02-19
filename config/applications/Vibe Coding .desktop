@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Vibe Coding 
+Comment=Vibe Coding 
+Exec=omarchy-launch-webapp https://aistudio.google.com/
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/Vibe Coding .png
+StartupNotify=true

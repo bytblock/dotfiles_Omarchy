@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Blockscan
+Comment=Blockscan
+Exec=omarchy-launch-webapp https://blockscan.com/
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/Blockscan.png
+StartupNotify=true

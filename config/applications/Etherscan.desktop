@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Etherscan
+Comment=Etherscan
+Exec=omarchy-launch-webapp https://etherscan.io/
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/Etherscan.png
+StartupNotify=true

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=apple
+Comment=apple
+Exec=omarchy-launch-webapp https://www.apple.com/
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/applications/icons/apple.png
+StartupNotify=true

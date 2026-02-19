@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Coinbase
+Comment=Coinbase
+Exec=omarchy-launch-webapp https://www.coinbase.com/home
+Terminal=false
+Type=Application
+Icon=/home/rooutt/.local/share/icons/coinbase-logo.png
+StartupNotify=true
