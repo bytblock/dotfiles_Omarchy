@@ -55,4 +55,16 @@ if [ -d "$DOTFILES_DIR/claude" ]; then
     $DRY_RUN cp -r "$DOTFILES_DIR/claude/commands" ~/.claude/ 2>/dev/null || true
 fi
 
+# Omarchy webapps
+if [ -d "$DOTFILES_DIR/config/applications" ]; then
+    echo "Restoring Omarchy webapps..."
+    mkdir -p ~/.local/share/applications/icons
+    for f in "$DOTFILES_DIR"/config/applications/*.desktop; do
+        [ -f "$f" ] && $DRY_RUN cp "$f" ~/.local/share/applications/
+    done
+    $DRY_RUN cp "$DOTFILES_DIR"/config/applications/icons/*.png ~/.local/share/applications/icons/ 2>/dev/null || true
+    $DRY_RUN update-desktop-database ~/.local/share/applications/
+    echo "Webapps restored and desktop database updated."
+fi
+
 echo "Done! Run 'hyprctl reload' to apply Hyprland changes."
